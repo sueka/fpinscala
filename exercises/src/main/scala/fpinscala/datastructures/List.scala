@@ -55,7 +55,11 @@ object List { // `List` companion object. Contains functions for creating and wo
     case Nil => null
   }
 
-  def setHead[A](l: List[A], h: A): List[A] = ???
+  // Exercise 3
+  def setHead[A](l: List[A], h: A): List[A] = l match {
+    case Cons(_, t) => Cons(h, t)
+    case Nil => Nil
+  }
 
   def drop[A](l: List[A], n: Int): List[A] = ???
 
