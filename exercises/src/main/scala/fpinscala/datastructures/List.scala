@@ -136,5 +136,7 @@ object List { // `List` companion object. Contains functions for creating and wo
   def stringifyAll(ds: List[Double]) =
     foldRight(ds, Nil: List[String])((d, t) => Cons(d.toString, t))
 
-  def map[A,B](l: List[A])(f: A => B): List[B] = ???
+  // Exercise 18
+  def map[A,B](l: List[A])(f: A => B): List[B] =
+    foldRight(l, Nil: List[B])((a, t) => Cons(f(a), t))
 }
