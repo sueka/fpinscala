@@ -104,5 +104,24 @@ object List { // `List` companion object. Contains functions for creating and wo
   // Exercise 12
   def reverse[A](l: List[A]) = foldLeft(l, Nil: List[A])((res, h) => Cons(h, res))
 
+  // Exercise 13
+  def reverseViaFoldLeft[A](l: List[A]) = foldLeft(l, Nil: List[A])((res, h) => Cons(h, res))
+
+  def foldRight2[A, B](l: List[A], z: B)(f: (A, B) => B): B =
+    foldLeft(reverseViaFoldLeft(l), z)((b, a) => f(a, b))
+
+  def :+[A](l: List[A], a: A) = foldRight(l, Cons(a, Nil))(Cons(_, _))
+
+  def reverseViaFoldRight[A](l: List[A]) = foldRight(l, Nil: List[A])((a, res) => :+(res, a))
+
+  def foldLeft2[A, B](l: List[A], z: B)(f: (B, A) => B): B =
+    foldRight(reverseViaFoldRight(l), z)((a, res) => f(res, a))
+
+  def foldLeft3[A, B](l: List[A], z: B)(f: (B, A) => B): B =
+    foldRight(l, (res: B) => res)((a, lazyRes) => res => lazyRes(f(res, a)))(z)
+
+  def foldRight3[A, B](l: List[A], z: B)(f: (A, B) => B): B =
+    foldLeft(l, (res: B) => res)((lazyRes, a) => res => lazyRes(f(a, res)))(z)
+
   def map[A,B](l: List[A])(f: A => B): List[B] = ???
 }
