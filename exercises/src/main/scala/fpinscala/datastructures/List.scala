@@ -94,5 +94,12 @@ object List { // `List` companion object. Contains functions for creating and wo
     case Nil => z
   }
 
+  // Exercise 11
+  def sum3(ns: List[Int]) = foldLeft(ns, 0)(_ + _)
+
+  def product3(ns: List[Double]) = foldLeft[Double, Double](ns, 1)(_ * _)
+
+  def length2[A](l: List[A]): Int = foldLeft(l, 0)((res, _) => res + 1)
+
   def map[A,B](l: List[A])(f: A => B): List[B] = ???
 }
