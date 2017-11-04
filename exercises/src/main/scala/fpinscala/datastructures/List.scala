@@ -132,5 +132,9 @@ object List { // `List` companion object. Contains functions for creating and wo
   // Exercise 16
   def succ(ns: List[Int]) = foldRight(ns, Nil: List[Int])((h, t) => Cons(h + 1, t))
 
+  // Exercise 17
+  def stringifyAll(ds: List[Double]) =
+    foldRight(ds, Nil: List[String])((d, t) => Cons(d.toString, t))
+
   def map[A,B](l: List[A])(f: A => B): List[B] = ???
 }
