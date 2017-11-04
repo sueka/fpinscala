@@ -123,5 +123,8 @@ object List { // `List` companion object. Contains functions for creating and wo
   def foldRight3[A, B](l: List[A], z: B)(f: (A, B) => B): B =
     foldLeft(l, (res: B) => res)((lazyRes, a) => res => lazyRes(f(a, res)))(z)
 
+  // Exercise 14
+  def append2[A](a1: List[A], a2: List[A]): List[A] = foldRight(a1, a2)(Cons(_, _))
+
   def map[A,B](l: List[A])(f: A => B): List[B] = ???
 }
