@@ -101,5 +101,8 @@ object List { // `List` companion object. Contains functions for creating and wo
 
   def length2[A](l: List[A]): Int = foldLeft(l, 0)((res, _) => res + 1)
 
+  // Exercise 12
+  def reverse[A](l: List[A]) = foldLeft(l, Nil: List[A])((res, h) => Cons(h, res))
+
   def map[A,B](l: List[A])(f: A => B): List[B] = ???
 }
