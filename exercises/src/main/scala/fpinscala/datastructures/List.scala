@@ -129,5 +129,8 @@ object List { // `List` companion object. Contains functions for creating and wo
   // Exercise 15
   def flatten[A](ll: List[List[A]]) = foldRight(ll, Nil: List[A])(append2)
 
+  // Exercise 16
+  def succ(ns: List[Int]) = foldRight(ns, Nil: List[Int])((h, t) => Cons(h + 1, t))
+
   def map[A,B](l: List[A])(f: A => B): List[B] = ???
 }
