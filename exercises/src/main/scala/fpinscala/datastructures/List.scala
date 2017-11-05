@@ -163,4 +163,18 @@ object List { // `List` companion object. Contains functions for creating and wo
     case (_, Nil) => Nil
     case (Cons(h1, t1), Cons(h2, t2)) => Cons(f(h1, h2), zipWith(t1, t2)(f))
   }
+
+  // Exercise 24
+  @annotation.tailrec
+  def startsWith[A](as: List[A], subAs: List[A]): Boolean = (as, subAs) match {
+    case (_, Nil) => true
+    case (Cons(h, t), Cons(subH, subT)) if (h == subH) => startsWith(t, subT)
+    case _ => false
+  }
+
+  def hasSubsequence[A](as: List[A], subAs: List[A]): Boolean = as match {
+    case Nil => subAs == Nil
+    case _ if startsWith(as, subAs) => true
+    case Cons(_, t) => hasSubsequence(t, subAs)
+  }
 }
