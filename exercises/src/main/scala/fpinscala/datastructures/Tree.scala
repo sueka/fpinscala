@@ -30,6 +30,21 @@ object Tree {
     case Branch(l, r) => Branch(map(l)(f), map(r)(f))
   }
 
+  // Exercise 29
+  def fold[A, B](tree: Tree[A])(init: A => B)(acc: (B, B) => B): B = tree match {
+    case Leaf(v) => init(v)
+    case Branch(l, r) => acc(fold(l)(init)(acc), fold(r)(init)(acc))
+  }
+
+  def size2[A](tree: Tree[A]) = fold(tree)(_ => 1)(_ + _ + 1)
+
+  def miximum2(tree: Tree[Int]) = fold(tree)(identity)(_ max _)
+
+  def depth2[A](tree: Tree[A]) = fold(tree)(_ => 0)((l, r) => (l max r) + 1)
+
+  def map2[A, B](tree: Tree[A])(f: A => B) =
+    fold(tree)(v => Leaf(f(v)): Tree[B])((l, r) => Branch(l, r))
+
 
 
 
