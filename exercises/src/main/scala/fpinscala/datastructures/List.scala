@@ -146,4 +146,7 @@ object List { // `List` companion object. Contains functions for creating and wo
 
   // Exercise 20
   def flatMap[A,B](as: List[A])(f: A => List[B]): List[B] = flatten(map(as)(f))
+
+  // Exercise 21
+  def filter2[A](as: List[A])(f: A => Boolean) = flatMap(as)(a => if (f(a)) List(a) else Nil)
 }
