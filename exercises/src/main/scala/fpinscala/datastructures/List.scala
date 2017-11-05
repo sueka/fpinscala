@@ -149,4 +149,11 @@ object List { // `List` companion object. Contains functions for creating and wo
 
   // Exercise 21
   def filter2[A](as: List[A])(f: A => Boolean) = flatMap(as)(a => if (f(a)) List(a) else Nil)
+
+  // Exercise 22
+  def addByElement(a1: List[Int], a2: List[Int]): List[Int] = (a1, a2) match {
+    case (Nil, _) => Nil
+    case (_, Nil) => Nil
+    case (Cons(h1, t1), Cons(h2, t2)) => Cons(h1 + h2, addByElement(t1, t2))
+  }
 }
